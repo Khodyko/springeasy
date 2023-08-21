@@ -4,14 +4,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 public class MvcRunner implements WebMvcConfigurer {
 
         @Bean
     public ViewResolver viewResolver(){
         InternalResourceViewResolver bean=new InternalResourceViewResolver();
-//        bean.setViewClass(JstlView.class);
-        bean.setPrefix("/WEB-INF/views/folder/");
+        bean.setViewClass(JstlView.class);
+        bean.setPrefix("/WEB-INF/views/");
         bean.setSuffix(".html");
         return bean;
     }
