@@ -1,35 +1,22 @@
 package org.example;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class MvcRunner implements WebMvcConfigurer {
+public class MvcRunner extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-        @Bean
-    public ViewResolver viewResolver(){
-        InternalResourceViewResolver bean=new InternalResourceViewResolver();
-        bean.setViewClass(JstlView.class);
-        bean.setPrefix("/WEB-INF/views/");
-        bean.setSuffix(".html");
-        return bean;
+
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[0];
     }
 
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[] {WebConfig.class};
+    }
 
-
-
-//    @Bean
-//    public ITemplateResolver templateResolver(){
-//        SpringResourceTemplateResolver resolver=new SpringResourceTemplateResolver();
-//        resolver.setPrefix("/WEB-INF/views/folder/");
-//        resolver.setSuffix(".html");
-//        return resolver;
-//    }
-//
-//    @Bean
-//    public BeanNameViewResolver beanNameViewResolver(){
-//        return new BeanNameViewResolver();
-//    }
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
 }
